@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import {simpleImage} from '../imagePatterns/simpleImage'
-import {imageOne} from '../imagePatterns/ImageOne'
+import {repeatImg} from '../imagePatterns/repeatPattern'
+import {coverageImg} from '../imagePatterns/coverage'
+import {randomImg} from '../imagePatterns/randomPixel'
 export default class canvas extends Component {
     constructor(props){
         super(props)
@@ -13,27 +14,43 @@ export default class canvas extends Component {
     }
 
     componentDidMount(){
-        this.produceImage()
+        this.genCoverageImg()
     }
 
-    produceImage = () => {
+    //basic simple pattern
+    genRepeatImg = () => {
         const ctx = this.canvas.current.getContext('2d')
-
         const image = ctx.createImageData(256,128)
-
-        //ctx.putImageData(simpleImage(image),0,0)
-        ctx.putImageData(imageOne(image),0,0)
+        ctx.putImageData(repeatImg(image),0,0)        
+    }
+    //pixels has been shuffled and randomly distributed 
+    genRandomImg= () => {
+        const ctx = this.canvas.current.getContext('2d')
+        const image = ctx.createImageData(256,128)
+        ctx.putImageData(randomImg(image),0,0)
+    }
+    //find the most similiar pixel from each line 
+    genCoverageImg = () => {
+        const ctx = this.canvas.current.getContext('2d')
+        const image = ctx.createImageData(256,128)
+        ctx.putImageData(coverageImg(image),0,0)
     }
 
     render() {
         return (
-            <div>
+            <div style={this.canvasStyle}>
                 <canvas
-                 style={this.canvasStyle}
+                 
                  ref={this.canvas}
                  width={256}
                  height={128}
                 />
+
+                <br />
+
+                <button onClick={()=>{this.genRepeatImg()}}>Repeat-Pattern</button>
+                <button onClick={()=>{this.genRandomImg()}}>Random-Pixels</button>
+                <button onClick={()=>{this.genCoverageImg()}}>Coverage</button>
             </div>
         )
     }

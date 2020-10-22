@@ -1,4 +1,4 @@
-export const imageOne = (image) =>{
+export const repeatImg = (image) =>{
     let d = 0
     for(let hx=1;hx<33;hx++){
         for(let hz=1;hz<5;hz++){
