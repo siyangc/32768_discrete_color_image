@@ -1,7 +1,7 @@
 const distance = (r1,g1,b1,r2,g2,b2)=>{
-    let r = Math.min(Math.abs(r1-r2),32-Math.abs(r1-r2))
-    let g = Math.min(Math.abs(g1-g2),32-Math.abs(g1-g2))
-    let b = Math.min(Math.abs(b1-b2),32-Math.abs(b1-b2))
+    let r = r1-r2
+    let g = g1-g2
+    let b = b1-b2
     return Math.pow(r,2)+ Math.pow(g,2) + Math.pow(b,2)
 }
 
